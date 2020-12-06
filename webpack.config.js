@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const conf = {
-  entry: './src/ts/index.ts',
+  entry: './src/index.ts',
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
@@ -29,7 +29,10 @@ const conf = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin({
+    title: "Game Tanks",
+    template: "index.html"
+  })],
   devServer: {
     overlay: true,
   },
