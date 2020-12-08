@@ -1,9 +1,9 @@
 import {Application, Container, Point} from "pixi.js";
 
 export class BasicSceneView {
+	public nodeScene!: HTMLElement;
 	private _app!: Application;
 	protected _root!: Container;
-	protected _node!: HTMLElement;
 	private _content!: Container;
 	private _display: Container;
 	private _background!: Container;
@@ -33,6 +33,7 @@ export class BasicSceneView {
 
 	protected initContent(): void {
 		this._content = new Container();
+		this._content.name = "content";
 		this.display.addChild(this._content);
 	}
 
@@ -42,10 +43,6 @@ export class BasicSceneView {
 
 	public set app(application: Application) {
 		this._app = application;
-	}
-
-	public get node(): HTMLElement {
-		return this._node;
 	}
 
 	public get background(): Container {

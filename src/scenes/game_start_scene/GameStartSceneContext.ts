@@ -1,7 +1,7 @@
 import {ECommandName} from "../../enum/ECommandName";
-import {GameMainSceneDrawTemplateCommand} from "../game_main_scene/controller/commands/GameMainSceneDrawTemplateCommand";
 import {AbstractContext} from "../mvc/implementations/AbstractContext";
 import {GameStartSceneDrawTemplateCommand} from "./controller/commands/GameStartSceneDrawTemplateCommand";
+import {GameStartScenePressStartButtonCommand} from "./controller/commands/GameStartScenePressStartButtonCommand";
 import {GameStartSceneController} from "./controller/GameStartSceneController";
 import {GameStartSceneModel} from "./model/GameStartSceneModel";
 import {GameStartSceneView} from "./view/GameStartSceneView";
@@ -24,6 +24,7 @@ export class GameStartSceneContext
 
 	public startLoading(): void {
 		this._controller.executeCommand(ECommandName.DRAW_TEMPLATE);
+		this._controller.executeCommand(ECommandName.PRESS_START_BUTTON);
 	}
 
 	public getModel(): GameStartSceneModel {
@@ -52,5 +53,6 @@ export class GameStartSceneContext
 
 	private registerCommands(): void {
 		this._controller!.registerCommand(ECommandName.DRAW_TEMPLATE, GameStartSceneDrawTemplateCommand);
+		this._controller!.registerCommand(ECommandName.PRESS_START_BUTTON, GameStartScenePressStartButtonCommand);
 	}
 }

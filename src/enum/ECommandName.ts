@@ -9,5 +9,8 @@
  *  Created by Andrii Barvynko on 27-Nov-2018.
  */
 export enum ECommandName {
-	DRAW_TEMPLATE   = "DrawTemplate"
+	DRAW_TEMPLATE   = "DrawTemplate",
+	PRESS_START_BUTTON   = "PressStartButton",
+	LOAD_ASSETS   = "LoadAssets",
+	LOADING_COMPLETED   = "LoadingCompleted"
 }

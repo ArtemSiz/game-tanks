@@ -1,0 +1,10 @@
+body {
+  background-color: #000000;
+}
+
+.start-scene,
+.preloader-scene,
+.main-scene,
+.end-scene {
+  text-align: center;
+}

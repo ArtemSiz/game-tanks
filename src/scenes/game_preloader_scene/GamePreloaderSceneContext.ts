@@ -2,6 +2,8 @@ import {ECommandName} from "../../enum/ECommandName";
 import {GameMainSceneDrawTemplateCommand} from "../game_main_scene/controller/commands/GameMainSceneDrawTemplateCommand";
 import {AbstractContext} from "../mvc/implementations/AbstractContext";
 import {GamePreloaderSceneDrawTemplateCommand} from "./controller/commands/GamePreloaderSceneDrawTemplateCommand";
+import {GamePreloaderSceneLoadAssetsCommand} from "./controller/commands/GamePreloaderSceneLoadAssetsCommand";
+import {GamePreloaderSceneLoadingCompletedCommand} from "./controller/commands/GamePreloaderSceneLoadingCompletedCommand";
 import {GamePreloaderSceneController} from "./controller/GamePreloaderSceneController";
 import {GamePreloaderSceneModel} from "./model/GamePreloaderSceneModel";
 import {GamePreloaderSceneView} from "./view/GamePreloaderSceneView";
@@ -20,6 +22,8 @@ export class GamePreloaderSceneContext extends
 		this.createView();
 		this.registerCommands();
 		this.drawTemplate();
+		this.startLoading();
+		this.registerEventListeners();
 	}
 
 	public drawTemplate(): void {
@@ -51,6 +55,18 @@ export class GamePreloaderSceneContext extends
 	}
 
 	private registerCommands(): void {
-		this._controller!.registerCommand(ECommandName.DRAW_TEMPLATE, GamePreloaderSceneDrawTemplateCommand);
+		this._controller.registerCommand(ECommandName.DRAW_TEMPLATE, GamePreloaderSceneDrawTemplateCommand);
+		this._controller.registerCommand(ECommandName.LOAD_ASSETS, GamePreloaderSceneLoadAssetsCommand);
+		this._controller.registerCommand(ECommandName.LOADING_COMPLETED, GamePreloaderSceneLoadingCompletedCommand);
+	}
+
+	private registerEventListeners(): void {
+		this._model.loader.onAssetsLoaded.add(() => {
+			this._controller.executeCommand(ECommandName.LOADING_COMPLETED);
+		});
+	}
+
+	private startLoading(): void {
+		this._controller.executeCommand(ECommandName.LOAD_ASSETS);
 	}
 }

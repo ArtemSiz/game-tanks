@@ -4,7 +4,7 @@ import {GamePreloaderSceneContext} from "./scenes/game_preloader_scene/GamePrelo
 import {GameStartSceneContext} from "./scenes/game_start_scene/GameStartSceneContext";
 import {TScene} from "./type/TScene";
 
-export class ScenesStateMachine {
+class ScenesStateMachine {
 	public states: Array<TScene>;
 	private _current: TScene;
 	constructor() {
@@ -31,3 +31,5 @@ export class ScenesStateMachine {
 		return this._current;
 	}
 }
+
+export const scenesStateMachine = new ScenesStateMachine();

@@ -1,5 +1,6 @@
 import {Application} from "pixi.js";
 import {TNJDimensions} from "../../../type/TNJDimensions";
+import {Util} from "../../../util/Util";
 import {BasicSceneView} from "../../basic_scene/view/BasicSceneView";
 
 export class GamePreloaderSceneView extends BasicSceneView {
@@ -13,14 +14,15 @@ export class GamePreloaderSceneView extends BasicSceneView {
 		this.app = new Application({
 			width       : sceneSize.width,
 			height      : sceneSize.height,
-			transparent : true
+			transparent : true,
+			backgroundColor: Util.colors.bgColor
 		});
 		this.app.stage.addChild(this.background);
 		this.app.stage.addChild(this.content);
-		this._node = document.createElement("div");
-		this._node.className = "preloader-scene";
-		this._node.id = "preloader-scene";
-		this._node.appendChild(this.app.view);
-		document.body.append(this._node);
+		this.nodeScene = document.createElement("div");
+		this.nodeScene.className = "preloader-scene";
+		this.nodeScene.id = "preloader-scene";
+		this.nodeScene.appendChild(this.app.view);
+		document.body.append(this.nodeScene);
 	}
 }

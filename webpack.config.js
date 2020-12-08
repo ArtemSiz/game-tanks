@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const conf = {
@@ -29,19 +30,31 @@ const conf = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  plugins: [new HtmlWebpackPlugin({
-    title: "Game Tanks",
-    template: "index.html"
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Game Tanks",
+      template: "index.html"
+    }),
+    new CopyWebpackPlugin(
+        [{
+          from: "./assets/**/*",
+          ignore: ['**/_*/**', '**/_*.*', '**/_*']
+        }, {
+          from: "./src/style/**"
+        }]
+    ),
+  ],
   devServer: {
-    overlay: true,
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000
   },
 };
 
 module.exports = (env, options) => {
   const production = options.mode === 'production';
 
-  conf.devtool = production ? false : 'eval-sourcemap';
+  conf.devtool = production ? false : 'inline-source-map';
 
   return conf;
 };
