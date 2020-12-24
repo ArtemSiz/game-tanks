@@ -12,8 +12,9 @@ export class GamePreloaderSceneLoadingCompletedCommand
 
 	private goToMainScene(): void {
 		scenesStateMachine.change();
-		const currentScene = scenesStateMachine.currentScene;
-		currentScene.initialize();
+		const currentContext = scenesStateMachine.currentContext;
+		currentContext.initialize();
+		scenesStateMachine.onUpdateFrame();
 		// TODO need to research, hide preloader-scene
 		const startScene = document.getElementById("preloader-scene");
 		if (!isNil(startScene)) startScene.style.display = "none";

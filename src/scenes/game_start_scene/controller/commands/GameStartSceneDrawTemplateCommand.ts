@@ -4,6 +4,6 @@ import {GameStartSceneView} from "../../view/GameStartSceneView";
 
 export class GameStartSceneDrawTemplateCommand extends AbstractCommand<GameStartSceneModel, GameStartSceneView> {
 	public execute(): void {
-		this.view.drawTemplate(this.model.sceneSize);
+		this.view.drawTemplate();
 	}
 }

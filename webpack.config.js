@@ -54,7 +54,7 @@ const conf = {
 module.exports = (env, options) => {
   const production = options.mode === 'production';
 
-  conf.devtool = production ? false : 'inline-source-map';
+  conf.devtool = production ? false : 'source-map';
 
   return conf;
 };

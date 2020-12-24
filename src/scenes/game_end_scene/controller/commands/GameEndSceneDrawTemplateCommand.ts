@@ -4,6 +4,6 @@ import {GameEndSceneView} from "../../view/GameEndSceneView";
 
 export class GameEndSceneDrawTemplateCommand extends AbstractCommand<GameEndSceneModel, GameEndSceneView> {
 	public execute(): void {
-		this.view.drawTemplate(this.model.sceneSize);
+		this.view.drawTemplate(this.model.isWin);
 	}
 }

@@ -1,10 +1,6 @@
 import {BasicSceneModel} from "../../basic_scene/model/BasicSceneModel";
 
 export class GamePreloaderSceneModel extends BasicSceneModel {
+	public loadingProgress: number = 0;
 
-	constructor() {
-		super();
-		// tslint:disable-next-line:no-console
-		console.log("init GamePreloaderSceneModel");
-	}
 }

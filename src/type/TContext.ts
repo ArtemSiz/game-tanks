@@ -3,4 +3,4 @@ import {GameMainSceneContext} from "../scenes/game_main_scene/GameMainSceneConte
 import {GamePreloaderSceneContext} from "../scenes/game_preloader_scene/GamePreloaderSceneContext";
 import {GameStartSceneContext} from "../scenes/game_start_scene/GameStartSceneContext";
 
-export type TScene = GameStartSceneContext | GamePreloaderSceneContext | GameMainSceneContext | GameEndSceneContext;
+export type TContext = GameStartSceneContext | GamePreloaderSceneContext | GameMainSceneContext | GameEndSceneContext;

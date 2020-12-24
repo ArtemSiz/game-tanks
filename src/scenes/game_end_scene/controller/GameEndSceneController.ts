@@ -8,8 +8,6 @@ export class GameEndSceneController {
 
 	constructor(context: GameEndSceneContext) {
 		this._commandMap = {};
-		// tslint:disable-next-line:no-console
-		console.log("init GameEndSceneController");
 		this._context = context;
 	}
 

@@ -1,4 +1,5 @@
 import {ECommandName} from "../../enum/ECommandName";
+import {ISound} from "../../interface/ISound";
 import {AbstractContext} from "../mvc/implementations/AbstractContext";
 import {GameEndSceneDrawTemplateCommand} from "./controller/commands/GameEndSceneDrawTemplateCommand";
 import {GameEndSceneController} from "./controller/GameEndSceneController";
@@ -7,23 +8,24 @@ import {GameEndSceneView} from "./view/GameEndSceneView";
 
 export class GameEndSceneContext
 	extends AbstractContext<GameEndSceneModel, GameEndSceneView, GameEndSceneController> {
-	private _model!: GameEndSceneModel;
-	private _view!: GameEndSceneView;
-	private _controller!: GameEndSceneController;
+	private _model: GameEndSceneModel;
+	private _view: GameEndSceneView;
+	private _soundManager: ISound;
+	private _controller: GameEndSceneController;
 
-	public initialize() {
-		// tslint:disable-next-line:no-console
-		console.log("init GameEndSceneContext");
+	public initialize(status?: boolean, soundManager?: ISound) {
 		this.createController();
 		this.createModel();
+		this._model.isWin = status;
+		this._soundManager = soundManager;
 		this.createView();
 		this.registerCommands();
-		// TODO It's temp
 		this.drawTemplate();
+		this.playSound();
 	}
 
 	public drawTemplate(): void {
-		this._controller.executeCommand(ECommandName.DRAW_TEMPLATE);
+		this._controller.executeCommand(ECommandName.END_SCENE_DRAW_TEMPLATE);
 	}
 
 	public getModel(): GameEndSceneModel {
@@ -43,7 +45,7 @@ export class GameEndSceneContext
 	}
 
 	private createView(): void {
-		this._view = new GameEndSceneView();
+		this._view = new GameEndSceneView(this._model.sceneSize);
 	}
 
 	private createController(): void {
@@ -51,6 +53,14 @@ export class GameEndSceneContext
 	}
 
 	private registerCommands(): void {
-		this._controller!.registerCommand(ECommandName.DRAW_TEMPLATE, GameEndSceneDrawTemplateCommand);
+		this._controller.registerCommand(ECommandName.END_SCENE_DRAW_TEMPLATE, GameEndSceneDrawTemplateCommand);
+	}
+
+	private playSound(): void {
+		if (this._model.isWin) {
+			this._soundManager.win();
+		} else {
+			this._soundManager.lose();
+		}
 	}
 }

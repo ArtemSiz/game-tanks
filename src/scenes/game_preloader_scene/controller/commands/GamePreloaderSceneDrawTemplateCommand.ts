@@ -4,7 +4,8 @@ import {GamePreloaderSceneView} from "../../view/GamePreloaderSceneView";
 
 export class GamePreloaderSceneDrawTemplateCommand
 	extends AbstractCommand<GamePreloaderSceneModel, GamePreloaderSceneView> {
+
 	public execute(): void {
-		this.view.drawTemplate(this.model.sceneSize);
+		this.view.drawTemplate();
 	}
 }

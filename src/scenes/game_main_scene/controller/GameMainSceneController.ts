@@ -1,15 +1,15 @@
 import {isNil} from "lodash";
 import {TFunctionMap} from "../../../type/TFunctionMap";
+import {BasicSceneController} from "../../basic_scene/controller/BasicSceneController";
 import {GameMainSceneContext} from "../GameMainSceneContext";
 
-export class GameMainSceneController {
+export class GameMainSceneController extends BasicSceneController {
 	private _commandMap: TFunctionMap;
 	private _context: GameMainSceneContext;
 
 	constructor(context: GameMainSceneContext) {
+		super();
 		this._commandMap = {};
-		// tslint:disable-next-line:no-console
-		console.log("init GameMainSceneController");
 		this._context = context;
 	}
 

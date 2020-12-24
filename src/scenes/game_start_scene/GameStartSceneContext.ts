@@ -8,13 +8,11 @@ import {GameStartSceneView} from "./view/GameStartSceneView";
 
 export class GameStartSceneContext
 	extends AbstractContext<GameStartSceneModel, GameStartSceneView, GameStartSceneController> {
-	private _model!: GameStartSceneModel;
-	private _view!: GameStartSceneView;
-	private _controller!: GameStartSceneController;
+	private _model: GameStartSceneModel;
+	private _view: GameStartSceneView;
+	private _controller: GameStartSceneController;
 
 	public initialize() {
-		// tslint:disable-next-line:no-console
-		console.log("init GameStartSceneContext");
 		this.createModel();
 		this.createView();
 		this.createController();
@@ -23,7 +21,7 @@ export class GameStartSceneContext
 	}
 
 	public startLoading(): void {
-		this._controller.executeCommand(ECommandName.DRAW_TEMPLATE);
+		this._controller.executeCommand(ECommandName.START_SCENE_DRAW_TEMPLATE);
 		this._controller.executeCommand(ECommandName.PRESS_START_BUTTON);
 	}
 
@@ -44,7 +42,7 @@ export class GameStartSceneContext
 	}
 
 	private createView(): void {
-		this._view = new GameStartSceneView();
+		this._view = new GameStartSceneView(this._model.sceneSize);
 	}
 
 	private createController(): void {
@@ -52,7 +50,7 @@ export class GameStartSceneContext
 	}
 
 	private registerCommands(): void {
-		this._controller!.registerCommand(ECommandName.DRAW_TEMPLATE, GameStartSceneDrawTemplateCommand);
+		this._controller!.registerCommand(ECommandName.START_SCENE_DRAW_TEMPLATE, GameStartSceneDrawTemplateCommand);
 		this._controller!.registerCommand(ECommandName.PRESS_START_BUTTON, GameStartScenePressStartButtonCommand);
 	}
 }

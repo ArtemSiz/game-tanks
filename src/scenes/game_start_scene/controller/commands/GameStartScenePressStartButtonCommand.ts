@@ -11,8 +11,9 @@ export class GameStartScenePressStartButtonCommand extends AbstractCommand<GameS
 
 	private goToPreloaderScene(): void {
 		scenesStateMachine.change();
-		const currentScene = scenesStateMachine.currentScene;
-		currentScene.initialize();
+		const currentContext = scenesStateMachine.currentContext;
+		currentContext.initialize();
+		scenesStateMachine.onUpdateFrame();
 		// TODO need to research, hide start-scene
 		const startScene = document.getElementById("start-scene");
 		if (!isNil(startScene)) startScene.style.display = "none";

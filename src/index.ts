@@ -1,8 +1,6 @@
+import "pixi-sound";
 import {scenesStateMachine} from "./ScenesStateMachine";
 
-
-// scenesStateMachine.change();
-// scenesStateMachine.change();
-const currentScene = scenesStateMachine.currentScene;
-currentScene.initialize();
+const currentContext = scenesStateMachine.currentContext;
+currentContext.initialize();
 

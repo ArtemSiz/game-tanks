@@ -1,25 +1,16 @@
-import {Application, Sprite, Text} from "pixi.js";
+import {Sprite, Text} from "pixi.js";
 import {TNJDimensions} from "../../../type/TNJDimensions";
-import {Util} from "../../../util/Util";
 import {BasicSceneView} from "../../basic_scene/view/BasicSceneView";
 
 export class GameStartSceneView extends BasicSceneView{
-	public template: string = "GameStartScene";
 	public buttonStart!: Sprite;
 
-	constructor() {
-		super();
+	constructor(sceneSize: TNJDimensions) {
+		super(sceneSize);
 		this.content.interactive = true;
 	}
 
-	public drawTemplate(sceneSize: TNJDimensions): void {
-		this.app = new Application({
-			width       : sceneSize.width,
-			height      : sceneSize.height,
-			transparent : false,
-			backgroundColor: Util.colors.bgColor
-		});
-		this.app.stage.addChild(this.background);
+	public drawTemplate(): void {
 		this.addContentItems();
 		this.app.stage.addChild(this.content);
 		this.nodeScene = document.createElement("div");
