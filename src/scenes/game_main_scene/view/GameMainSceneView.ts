@@ -14,7 +14,6 @@ export class GameMainSceneView extends BasicSceneView {
 	constructor(sceneSize: TNJDimensions) {
 		super(sceneSize);
 		this.content.interactive = true;
-		this.content.sortableChildren = true;
 		this._mapGenerator = new MapGenerator(this.createComponent.bind(this));
 	}
 

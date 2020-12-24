@@ -30,6 +30,7 @@ export class MapComponent extends AbstractComponent implements IComponent {
 		this.emptyCells = config.emptyCells;
 		this.walls = config.walls;
 		this.grass = config.grass;
+		this.sortableChildren = true;
 		this.drawMap();
 	}
 

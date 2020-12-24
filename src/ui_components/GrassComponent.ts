@@ -7,4 +7,8 @@ export class GrassComponent extends AbstractComponent implements IComponent {
 	public name: string = EUiComponentName.GRASS;
 	public requiredTextures: string = ETextureName.GRASS;
 
+	constructor() {
+		super();
+		this.zIndex = 3;
+	}
 }
